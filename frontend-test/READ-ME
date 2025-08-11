@@ -1,0 +1,30 @@
+# Affordmed - Frontend URL Shortener (Client-only)
+
+## Overview
+- React + Material UI app.
+- Runs on http://localhost:3000
+- All data persisted to browser localStorage.
+- Redirection handled via client-side route `/r/:shortcode`.
+- Logging integrated: call to test server logging endpoint at http://20.244.56.144/logging-service/logs
+
+## Setup
+1. Install dependencies:
+   cd frontend-test
+   npm install
+
+2. Start the app:
+   npm start
+   (app will use port 3000)
+
+3. To enable logging:
+   - You must register and authenticate with the test server to obtain `access_token`.
+   - In `src/api/loggerClient.js` update variable `accessToken` at runtime:
+     - Either edit file and set token, OR better, after starting app open browser console and run:
+       window.localStorage.setItem('EVAL_ACCESS_TOKEN', '<YOUR_TOKEN>');
+       // then refresh
+   - Alternatively change code to set token automatically.
+
+## Notes
+- Default validity is 30 minutes if left blank.
+- Custom shortcode allowed (alphanumeric + _ -), length 3..50. If duplicate, a unique variant is auto-generated.
+- All logs are best-effort. Logging failures do not break the app.
